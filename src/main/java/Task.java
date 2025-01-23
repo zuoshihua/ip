@@ -7,17 +7,8 @@ public class Task {
         this.completed = false;
     }
 
-    private Task(String name, boolean completed) {
-        this.name = name;
+    public void setCompleted(boolean completed) {
         this.completed = completed;
-    }
-
-    public Task mark() {
-        return new Task(this.name, true);
-    }
-
-    public Task unmark() {
-        return new Task(this.name, false);
     }
 
     @Override
