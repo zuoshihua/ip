@@ -17,6 +17,7 @@ public class Tundra {
             userInput = sc.nextLine();
             if (userInput.equalsIgnoreCase("list")) {
                 System.out.println("\t____________________________________________________________");
+                System.out.println("\tHere are the tasks in your list:");
                 for (Task s : db) {
                     System.out.printf("\t%d.%s\n", db.indexOf(s) + 1, s);
                 }
@@ -25,7 +26,9 @@ public class Tundra {
                 String[] tokens = userInput.split(" ");
                 int i = Integer.parseInt(tokens[1]);
                 if (tokens[0].equalsIgnoreCase("mark")) {
-                    db.set(i-1, db.get(i-1).mark());
+                    Task t = db.get(i-1);
+                    t.setCompleted(true);
+                    db.set(i-1, t);
 
                     String response = "\t____________________________________________________________\n"
                             + "\tNice! I've marked this task as done:\n"
@@ -33,7 +36,9 @@ public class Tundra {
                             + "\t____________________________________________________________\n";
                     System.out.println(response);
                 } else {
-                    db.set(i-1, db.get(i-1).unmark());
+                    Task t = db.get(i-1);
+                    t.setCompleted(false);
+                    db.set(i-1, t);
                     String response = "\t____________________________________________________________\n"
                             + "\tOk, I've marked this task as not done yet:\n"
                             + "\t  " + db.get(i-1) + "\n"
