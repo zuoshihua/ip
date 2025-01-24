@@ -12,7 +12,7 @@ public class Tundra {
                 + "\t____________________________________________________________\n";
         System.out.println(welcome);
 
-        String commands = "Commands: bye, list, mark, unmark, todo, deadline, event";
+        String commands = "Commands: bye, list, delete, mark, unmark, todo, deadline, event";
 
         String userInput = "";
         while (true) {
@@ -64,7 +64,7 @@ public class Tundra {
                                 + "\t____________________________________________________________\n";
                         System.out.println(response);
                     } else throw new TundraException("Unrecognized command." + commands);
-                } else if (userInput.equalsIgnoreCase("delete")) {
+                } else if (userInput.contains("delete")) {
                     String[] tokens = userInput.split(" ");
                     int i;
                     if (tokens.length < 2)
@@ -84,7 +84,7 @@ public class Tundra {
                     String response = "\t____________________________________________________________\n"
                             + "\tNoted. I've removed this task:\n"
                             + "\t  " + t + "\n"
-                            + "\tNow you have " + db.size() + " tasks in the list."
+                            + "\tNow you have " + db.size() + " tasks in the list.\n"
                             + "\t____________________________________________________________\n";
                     System.out.println(response);
                 } else if (userInput.equalsIgnoreCase("bye")) {
