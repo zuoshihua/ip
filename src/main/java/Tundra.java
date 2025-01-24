@@ -31,7 +31,7 @@ public class Tundra {
                     if (tokens.length < 2)
                         throw new TundraException("Incorrect syntax. Usage: mark [number] || unmark [number]");
                     try {
-                       i = Integer.parseInt(tokens[1]);
+                        i = Integer.parseInt(tokens[1]);
                     } catch (NumberFormatException e) {
                         throw new TundraException("Incorrect syntax. Usage: mark [number] || unmark [number]");
                     }
@@ -44,7 +44,6 @@ public class Tundra {
                         }
                         t.setCompleted(true);
                         db.set(i - 1, t);
-
                         String response = "\t____________________________________________________________\n"
                                 + "\tNice! I've marked this task as done:\n"
                                 + "\t  " + db.get(i - 1) + "\n"
@@ -64,8 +63,30 @@ public class Tundra {
                                 + "\t  " + db.get(i - 1) + "\n"
                                 + "\t____________________________________________________________\n";
                         System.out.println(response);
+                    } else throw new TundraException("Unrecognized command." + commands);
+                } else if (userInput.equalsIgnoreCase("delete")) {
+                    String[] tokens = userInput.split(" ");
+                    int i;
+                    if (tokens.length < 2)
+                        throw new TundraException("Incorrect syntax. Usage: delete [number]");
+                    try {
+                        i = Integer.parseInt(tokens[1]);
+                    } catch (NumberFormatException e) {
+                        throw new TundraException("Incorrect syntax. Usage: delete [number]");
                     }
-                    else throw new TundraException("Unrecognized command." + commands);
+                    Task t;
+                    try {
+                        t = db.get(i - 1);
+                        db.remove(i - 1);
+                    } catch (IndexOutOfBoundsException e) {
+                        throw new TundraException("Invalid request. Enter `list` to see available tasks");
+                    }
+                    String response = "\t____________________________________________________________\n"
+                            + "\tNoted. I've removed this task:\n"
+                            + "\t  " + t + "\n"
+                            + "\tNow you have " + db.size() + " tasks in the list."
+                            + "\t____________________________________________________________\n";
+                    System.out.println(response);
                 } else if (userInput.equalsIgnoreCase("bye")) {
                     break;
                 } else {
