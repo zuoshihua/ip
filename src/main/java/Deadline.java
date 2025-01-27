@@ -9,6 +9,6 @@ public class Deadline extends Task {
 
     @Override
     public String toString() {
-        return String.format("[D]%s (by: %s)", super.toString(), by);
+        return String.format("[%s]%s (by: %s)", TaskEnum.DEADLINE, super.toString(), by);
     }
 }
