@@ -11,6 +11,10 @@ public class Task {
         this.completed = completed;
     }
 
+    public String toStoredString() {
+        return String.format("%s | %s", completed ? "1" : "0", name);
+    }
+
     @Override
     public String toString() {
         return String.format("[%s] %s", completed ? "X" : " ", name);
