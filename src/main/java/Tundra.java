@@ -1,4 +1,7 @@
 import java.io.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -100,6 +103,7 @@ public class Tundra {
                 } else {
                     String[] tokens = userInput.split(" ", 2);
                     Task t = null;
+                    DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
                     switch (tokens[0]) {
                         case "todo":
                             if (tokens.length < 2)
@@ -111,7 +115,12 @@ public class Tundra {
                             String[] dtokens = tokens[1].split(" /by ");
                             if (dtokens.length < 2)
                                 throw new TundraException("Incorrect syntax. Usage: deadline [description] /by [date]");
-                            t = new Deadline(dtokens[0], dtokens[1]);
+                            try {
+                                LocalDateTime by = LocalDateTime.parse(dtokens[1], fmt);
+                                t = new Deadline(dtokens[0], by);
+                            } catch (DateTimeParseException e) {
+                                throw new TundraException("Incorrect date and time format. Example: 2019-10-15 1800");
+                            }
                             tasklist.add(t);
                             break;
                         case "event":
@@ -123,9 +132,13 @@ public class Tundra {
                             String[] etokens2 = duration.split(" /to ");
                             if (etokens2.length < 2)
                                 throw new TundraException("Incorrect syntax. Usage: event [description] /from [date] /to [date]");
-                            String from = etokens2[0];
-                            String to = etokens2[1];
-                            t = new Event(name, from, to);
+                            try {
+                                LocalDateTime from = LocalDateTime.parse(etokens2[0], fmt);
+                                LocalDateTime to = LocalDateTime.parse(etokens2[1], fmt);
+                                t = new Event(name, from, to);
+                            } catch (DateTimeParseException e) {
+                                throw new TundraException("Incorrect date and time format. Example: 2019-10-15 1800");
+                            }
                             tasklist.add(t);
                             break;
                             default:

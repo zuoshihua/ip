@@ -2,6 +2,9 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -34,25 +37,25 @@ public class Database {
                 switch (parts[0]) {
                     case "T" -> {
                         task = new Todo(parts[2]);
-                        task.setCompleted(parts[1].equals("1"));
                     }
                     case "D" -> {
-                        task = new Deadline(parts[2], parts[3]);
-                        task.setCompleted(parts[1].equals("1"));
+                        task = new Deadline(parts[2], LocalDateTime.parse(parts[3], Deadline.fmt));
                     }
                     case "E" -> {
-                        task = new Event(parts[2], parts[3], parts[4]);
-                        task.setCompleted(parts[1].equals("1"));
+                        LocalDateTime from = LocalDateTime.parse(parts[3], Event.fmt);
+                        LocalDateTime to = LocalDateTime.parse(parts[4], Event.fmt);
+                        task = new Event(parts[2], from, to);
                     }
                     default -> {
                         bad++;
                         continue;
                     }
                 }
-            } catch (ArrayIndexOutOfBoundsException e) {
+            } catch (ArrayIndexOutOfBoundsException | DateTimeParseException e) {
                 bad++;
                 continue;
             }
+            task.setCompleted(parts[1].equals("1"));
             list.add(task);
         }
         if (bad > 0) throw new TundraException("Data corrupt. Omitted " + bad + " tasks");
