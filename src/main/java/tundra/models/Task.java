@@ -1,10 +1,42 @@
+package tundra.models;
+
+import java.time.format.DateTimeFormatter;
+
 public class Task {
+
+    public static final DateTimeFormatter DATETIME_FORMATTER = DateTimeFormatter.ofPattern("MMM dd yyyy hh:mm a");
+
     private String name;
     private boolean completed;
+
+    public Task() {}
 
     public Task(String name) {
         this.name = name;
         this.completed = false;
+    }
+
+    public boolean fromStoredString(String str, String separator) {
+        String[] parts = str.split(separator, 2);
+        try {
+            setCompleted(parts[0].equalsIgnoreCase("1"));
+            setName(parts[1]);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            return false;
+        }
+        return true;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public boolean isCompleted() {
+        return completed;
     }
 
     public void setCompleted(boolean completed) {
