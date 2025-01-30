@@ -1,4 +1,11 @@
-import java.io.*;
+import tundra.exceptions.TundraException;
+import tundra.models.Deadline;
+import tundra.models.Event;
+import tundra.models.Task;
+import tundra.models.Todo;
+import tundra.utils.Storage;
+
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -9,19 +16,21 @@ public class Tundra {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        ArrayList<Task> tasklist = new ArrayList<>();
+        ArrayList<Task> tasks = new ArrayList<>();
         String welcome = "\t____________________________________________________________\n"
                 + "\tHello! I'm Tundra\n"
                 + "\tWhat can I do for you?\n"
                 + "\t____________________________________________________________\n";
         System.out.println(welcome);
 
-        Database db = new Database("./data/tundra.txt");
-        try {
-            db.load(tasklist);
-        } catch (TundraException e) {
-            System.out.println(e.getMessage());
-        }
+        Storage db = new Storage("./data/tundra.txt");
+        int status = db.load(tasks);
+
+        if (status < 0)
+            throw new TundraException("Failed to load all tasks");
+
+        if (status > 0)
+            throw new TundraException("Failed to load " + status + " task(s)");
 
         String commands = "Commands: bye, list, delete, mark, unmark, todo, deadline, event";
 
@@ -32,8 +41,8 @@ public class Tundra {
                 if (userInput.equalsIgnoreCase("list")) {
                     System.out.println("\t____________________________________________________________");
                     System.out.println("\tHere are the tasks in your list:");
-                    for (Task s : tasklist) {
-                        System.out.printf("\t%d.%s\n", tasklist.indexOf(s) + 1, s);
+                    for (Task s : tasks) {
+                        System.out.printf("\t%d.%s\n", tasks.indexOf(s) + 1, s);
                     }
                     System.out.println("\t____________________________________________________________\n");
                 } else if (userInput.contains("mark")) {
@@ -49,29 +58,29 @@ public class Tundra {
                     if (tokens[0].equalsIgnoreCase("mark")) {
                         Task t;
                         try {
-                            t = tasklist.get(i - 1);
+                            t = tasks.get(i - 1);
                         } catch (IndexOutOfBoundsException e) {
                             throw new TundraException("Invalid request. Enter `list` to see available tasks");
                         }
                         t.setCompleted(true);
-                        tasklist.set(i - 1, t);
+                        tasks.set(i - 1, t);
                         String response = "\t____________________________________________________________\n"
                                 + "\tNice! I've marked this task as done:\n"
-                                + "\t  " + tasklist.get(i - 1) + "\n"
+                                + "\t  " + tasks.get(i - 1) + "\n"
                                 + "\t____________________________________________________________\n";
                         System.out.println(response);
                     } else if (tokens[0].equalsIgnoreCase("unmark")) {
                         Task t;
                         try {
-                            t = tasklist.get(i - 1);
+                            t = tasks.get(i - 1);
                         } catch (IndexOutOfBoundsException e) {
                             throw new TundraException("Invalid request. Enter `list` to see available tasks");
                         }
                         t.setCompleted(false);
-                        tasklist.set(i - 1, t);
+                        tasks.set(i - 1, t);
                         String response = "\t____________________________________________________________\n"
                                 + "\tOk, I've marked this task as not done yet:\n"
-                                + "\t  " + tasklist.get(i - 1) + "\n"
+                                + "\t  " + tasks.get(i - 1) + "\n"
                                 + "\t____________________________________________________________\n";
                         System.out.println(response);
                     } else throw new TundraException("Unrecognized command." + commands);
@@ -87,15 +96,15 @@ public class Tundra {
                     }
                     Task t;
                     try {
-                        t = tasklist.get(i - 1);
-                        tasklist.remove(i - 1);
+                        t = tasks.get(i - 1);
+                        tasks.remove(i - 1);
                     } catch (IndexOutOfBoundsException e) {
                         throw new TundraException("Invalid request. Enter `list` to see available tasks");
                     }
                     String response = "\t____________________________________________________________\n"
                             + "\tNoted. I've removed this task:\n"
                             + "\t  " + t + "\n"
-                            + "\tNow you have " + tasklist.size() + " tasks in the list.\n"
+                            + "\tNow you have " + tasks.size() + " tasks in the list.\n"
                             + "\t____________________________________________________________\n";
                     System.out.println(response);
                 } else if (userInput.equalsIgnoreCase("bye")) {
@@ -109,7 +118,7 @@ public class Tundra {
                             if (tokens.length < 2)
                                 throw new TundraException("Incorrect syntax. Usage: todo [description]");
                             t = new Todo(tokens[1]);
-                            tasklist.add(t);
+                            tasks.add(t);
                             break;
                         case "deadline":
                             String[] dtokens = tokens[1].split(" /by ");
@@ -121,7 +130,7 @@ public class Tundra {
                             } catch (DateTimeParseException e) {
                                 throw new TundraException("Incorrect date and time format. Example: 2019-10-15 1800");
                             }
-                            tasklist.add(t);
+                            tasks.add(t);
                             break;
                         case "event":
                             String[] etokens = tokens[1].split(" /from ");
@@ -139,7 +148,7 @@ public class Tundra {
                             } catch (DateTimeParseException e) {
                                 throw new TundraException("Incorrect date and time format. Example: 2019-10-15 1800");
                             }
-                            tasklist.add(t);
+                            tasks.add(t);
                             break;
                             default:
                                 throw new TundraException("Unrecognized command.\n\t" + commands);
@@ -147,7 +156,7 @@ public class Tundra {
                     String response = "\t____________________________________________________________\n"
                             + "\tGot it. I've added this task:\n"
                             + "\t " + t + "\n"
-                            + "\tNow you have " + tasklist.size() + " tasks in the list.\n"
+                            + "\tNow you have " + tasks.size() + " tasks in the list.\n"
                             + "\t____________________________________________________________\n";
                     System.out.println(response);
                 }
@@ -156,11 +165,7 @@ public class Tundra {
             }
         }
 
-        try {
-            db.store(tasklist);
-        } catch (TundraException e) {
-            System.out.println(e.getMessage());
-        }
+        db.save(tasks);
 
         String goodbye = "\t____________________________________________________________\n"
                 + "\tBye. Hope to see you again soon!\n"

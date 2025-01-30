@@ -3,6 +3,7 @@ package tundra.utils;
 import tundra.models.Task;
 import tundra.models.TaskEnum;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.file.Files;
@@ -16,49 +17,58 @@ public class Storage {
     private static final String VALUE_SEPARATOR = " \\| ";
 
     private final Path filePath;
-    private final Scanner sc;
-    private final PrintWriter pw;
-    private int bad;
 
-    public Storage(String path) throws IOException {
+    public Storage(String path) {
         filePath = Path.of(path);
-        bad = 0;
-        if (!Files.exists(filePath.getParent())) {
-            Files.createDirectories(filePath.getParent());
-        }
-        if (!Files.exists(filePath)) {
-            Files.createFile(filePath);
-        }
-        sc = new Scanner(filePath);
-        pw = new PrintWriter(filePath.toFile());
     }
 
-    public int getBad() {
-        return bad;
+    private static void createSaveFile(Path fp) throws IOException {
+        if (!Files.exists(fp.getParent())) {
+            Files.createDirectories(fp.getParent());
+        }
+        if (!Files.exists(fp)) {
+            Files.createFile(fp);
+        }
     }
 
-    public ArrayList<Task> load() {
-        ArrayList<Task> tasks = new ArrayList<>();
+    public int load(ArrayList<Task> tasks) {
+        Scanner sc;
+        try {
+            createSaveFile(filePath);
+            sc = new Scanner(filePath);
+        } catch (IOException e) {
+            return -1;
+        }
+
+        int bad = 0;
         while (sc.hasNextLine()) {
             String line = sc.nextLine();
             String[] parts = line.split(VALUE_SEPARATOR, 2);
             try {
                 Task task = TaskEnum.valueOf(parts[0]).getTask();
-                if (task.fromStoredString(parts[1], VALUE_SEPARATOR)) {
+                if (task.fromStoredString(parts[1], VALUE_SEPARATOR))
                     tasks.add(task);
-                } else {
+                else
                     bad++;
-                }
             } catch (IllegalArgumentException | ArrayIndexOutOfBoundsException e) {
                 bad++;
             }
         }
-        return tasks;
+
+        return bad;
     }
 
-    public void save(ArrayList<Task> tasks) {
-        for (Task task : tasks) {
-            pw.println(task.toStoredString());
+    public boolean save(ArrayList<Task> tasks) {
+        try {
+            createSaveFile(filePath);
+            PrintWriter pw = new PrintWriter(filePath.toFile());
+            for (Task task : tasks) {
+                pw.println(task.toStoredString());
+            }
+            pw.close();
+            return pw.checkError();
+        } catch (IOException e) {
+            return false;
         }
     }
 
