@@ -1,15 +1,14 @@
 package tundra.models;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeParseException;
 
-public class Deadline extends Task {
+public class DeadlineTask extends Task {
 
     private LocalDateTime due;
 
-    public Deadline() {}
+    public DeadlineTask() {}
 
-    public Deadline(String name, LocalDateTime due) {
+    public DeadlineTask(String name, LocalDateTime due) {
         super(name);
         this.due = due;
     }
@@ -35,11 +34,11 @@ public class Deadline extends Task {
 
     @Override
     public String toStoredString() {
-        return String.format("D | %s | %s", due.format(DATETIME_FORMATTER), super.toStoredString());
+        return String.format("%s | %s | %s", TaskEnum.D, due.format(DATETIME_FORMATTER), super.toStoredString());
     }
 
     @Override
     public String toString() {
-        return String.format("[D]%s (by: %s)", super.toString(), due.format(DATETIME_FORMATTER));
+        return String.format("[%s]%s (by: %s)", TaskEnum.D, super.toString(), due.format(DATETIME_FORMATTER));
     }
 }

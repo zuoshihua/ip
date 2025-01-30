@@ -1,10 +1,10 @@
 package tundra.models;
 
-public class Todo extends Task {
+public class TodoTask extends Task {
 
-    public Todo() {}
+    public TodoTask() {}
 
-    public Todo(String name) {
+    public TodoTask(String name) {
         super(name);
     }
 
@@ -19,11 +19,11 @@ public class Todo extends Task {
 
     @Override
     public String toStoredString() {
-        return String.format("T | %s", super.toStoredString());
+        return String.format("%s | %s", TaskEnum.T, super.toStoredString());
     }
 
     @Override
     public String toString() {
-        return String.format("[T]%s", super.toString());
+        return String.format("[%s]%s", TaskEnum.T, super.toString());
     }
 }

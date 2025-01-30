@@ -3,16 +3,16 @@ package tundra.models;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class Event extends Task {
+public class EventTask extends Task {
 
     public static final DateTimeFormatter fmt = DateTimeFormatter.ofPattern("MMM dd yyyy hh:mm a");
 
     private LocalDateTime from;
     private LocalDateTime to;
 
-    public Event() {}
+    public EventTask() {}
 
-    public Event(String name, LocalDateTime from, LocalDateTime to) {
+    public EventTask(String name, LocalDateTime from, LocalDateTime to) {
         super(name);
         this.from = from;
         this.to = to;
@@ -48,11 +48,11 @@ public class Event extends Task {
 
     @Override
     public String toStoredString() {
-        return String.format("E | %s | %s | %s", from.format(fmt), to.format(fmt), super.toStoredString());
+        return String.format("%s | %s | %s | %s", TaskEnum.E, from.format(fmt), to.format(fmt), super.toStoredString());
     }
 
     @Override
     public String toString() {
-        return String.format("[E]%s (from: %s to: %s)", super.toString(), from.format(fmt), to.format(fmt));
+        return String.format("[%s]%s (from: %s to: %s)", TaskEnum.E, super.toString(), from.format(fmt), to.format(fmt));
     }
 }
