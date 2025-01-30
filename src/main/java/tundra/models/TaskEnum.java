@@ -1,7 +1,7 @@
 package tundra.models;
 
 public enum TaskEnum {
-    T(new Todo()), D(new Deadline()), E(new Event());
+    T(new TodoTask()), D(new DeadlineTask()), E(new EventTask());
 
     final Task task;
 
@@ -11,5 +11,10 @@ public enum TaskEnum {
 
     public Task getTask() {
         return task;
+    }
+
+    @Override
+    public String toString() {
+        return this.name();
     }
 }
