@@ -1,9 +1,9 @@
 package tundra.utils;
 
+import tundra.exceptions.TundraException;
 import tundra.models.Task;
 import tundra.models.TaskEnum;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.file.Files;
@@ -37,7 +37,7 @@ public class Storage {
             createSaveFile(filePath);
             sc = new Scanner(filePath);
         } catch (IOException e) {
-            return -1;
+            throw new TundraException("ERROR! I couldn't retrieve your tasks.");
         }
 
         int bad = 0;
@@ -58,17 +58,13 @@ public class Storage {
         return bad;
     }
 
-    public boolean save(ArrayList<Task> tasks) {
-        try {
-            createSaveFile(filePath);
-            PrintWriter pw = new PrintWriter(filePath.toFile());
+    public void save(ArrayList<Task> tasks) {
+        try (PrintWriter pw = new PrintWriter(filePath.toFile())){
             for (Task task : tasks) {
                 pw.println(task.toStoredString());
             }
-            pw.close();
-            return pw.checkError();
         } catch (IOException e) {
-            return false;
+            throw new TundraException("ERROR! I couldn't save your tasks.");
         }
     }
 
