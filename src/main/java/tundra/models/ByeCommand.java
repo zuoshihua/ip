@@ -1,7 +1,8 @@
-package tundra.views;
+package tundra.models;
 
 import tundra.utils.Storage;
 import tundra.utils.TaskList;
+import tundra.views.Ui;
 
 public class ByeCommand extends Command {
 

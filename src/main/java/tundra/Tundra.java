@@ -4,7 +4,7 @@ import tundra.exceptions.TundraException;
 import tundra.utils.Parser;
 import tundra.utils.Storage;
 import tundra.utils.TaskList;
-import tundra.views.Command;
+import tundra.models.Command;
 import tundra.views.Ui;
 
 public class Tundra {
