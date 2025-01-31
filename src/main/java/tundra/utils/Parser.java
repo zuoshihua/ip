@@ -1,9 +1,9 @@
 package tundra.utils;
 
 import tundra.exceptions.TundraException;
-import tundra.models.Command;
-import tundra.models.CommandEnum;
-import tundra.models.HelpCommand;
+import tundra.views.Command;
+import tundra.views.CommandEnum;
+import tundra.views.HelpCommand;
 
 import java.time.format.DateTimeFormatter;
 

@@ -1,8 +1,8 @@
-package tundra.models;
+package tundra.views;
 
+import tundra.models.Task;
 import tundra.utils.Storage;
 import tundra.utils.TaskList;
-import tundra.views.Ui;
 
 import java.util.ArrayList;
 

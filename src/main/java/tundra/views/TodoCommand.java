@@ -1,9 +1,10 @@
-package tundra.models;
+package tundra.views;
 
 import tundra.exceptions.TundraException;
+import tundra.models.Task;
+import tundra.models.TodoTask;
 import tundra.utils.Storage;
 import tundra.utils.TaskList;
-import tundra.views.Ui;
 
 public class TodoCommand extends Command {
 

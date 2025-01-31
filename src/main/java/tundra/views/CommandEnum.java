@@ -1,4 +1,4 @@
-package tundra.models;
+package tundra.views;
 
 public enum CommandEnum {
     HELP(new HelpCommand()),
