@@ -1,7 +1,5 @@
 package tundra.views;
 
-import tundra.models.TaskEnum;
-
 public enum CommandEnum {
     HELP(new HelpCommand()),
     LIST(new ListCommand()),
