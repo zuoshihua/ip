@@ -3,7 +3,21 @@ package tundra.views;
 import tundra.utils.Storage;
 import tundra.utils.TaskList;
 
-public interface Command {
+public abstract class Command {
 
-    public void execute(TaskList taskList, Ui ui, Storage storage);
+    private String[] arguments = null;
+
+    public Command() {}
+
+    public String[] getArguments() {
+        return arguments;
+    }
+
+    public void setArguments(String[] arguments) {
+        this.arguments = arguments;
+    }
+
+    public abstract void init(String fullCommand);
+
+    public abstract void execute(TaskList taskList, Ui ui, Storage storage);
 }
