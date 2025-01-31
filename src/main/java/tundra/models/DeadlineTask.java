@@ -27,7 +27,7 @@ public class DeadlineTask extends Task {
     public boolean fromStoredString(String str, String separator) {
         try {
             String[] parts = str.split(separator, 2);
-            setDue(LocalDateTime.parse(parts[0]));
+            setDue(LocalDateTime.parse(parts[0], Parser.OUTPUT_FORMAT));
             return super.fromStoredString(parts[1], separator);
         } catch (ArrayIndexOutOfBoundsException e) {
             return false;

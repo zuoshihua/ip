@@ -4,7 +4,6 @@ import java.time.format.DateTimeFormatter;
 
 public class Task {
 
-
     private String name;
     private boolean completed;
 
