@@ -1,0 +1,47 @@
+package tundra.views;
+
+import tundra.exceptions.TundraException;
+import tundra.models.DeadlineTask;
+import tundra.models.Task;
+import tundra.utils.Parser;
+import tundra.utils.Storage;
+import tundra.utils.TaskList;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
+
+public class DeadlineCommand extends Command {
+
+    @Override
+    public void init(String fullCommand) {
+        try {
+            String body = fullCommand.split(" ", 2)[1];
+            String[] parts = body.split(" /by ", 2);
+            setArguments(new String[] {parts[0], parts[1]});
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new TundraException("Incorrect syntax. " +
+                    "Usage: deadline [description] /by [date/time]");
+        }
+    }
+
+    @Override
+    public void execute(TaskList taskList, Ui ui, Storage storage) {
+        String[] arguments = getArguments();
+        try {
+            LocalDateTime due = LocalDateTime.parse(arguments[1], Parser.INPUT_FORMAT);
+            Task task = new DeadlineTask(arguments[0], due);
+            taskList.add(task);
+            ui.printMessage(
+                    "Got it. I've added this task:\n",
+                    "\t" + task + "\n",
+                    "Now you have " + taskList.size() + " task(s) in the list.\n"
+            );
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new TundraException("Incorrect syntax. Usage: deadline [description] [date/time]");
+        } catch (DateTimeParseException e) {
+            String example = LocalDateTime.now().format(Parser.INPUT_FORMAT);
+            throw new TundraException("Incorrect date/time format. Example: " + example);
+        }
+    }
+
+}
