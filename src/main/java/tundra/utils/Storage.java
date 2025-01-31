@@ -13,7 +13,6 @@ import java.util.Scanner;
 
 public class Storage {
 
-    private static final String DATETIME_FORMAT = "MMM dd yyyy hh:mm a";
     private static final String VALUE_SEPARATOR = " \\| ";
 
     private final Path filePath;
@@ -37,7 +36,7 @@ public class Storage {
             createSaveFile(filePath);
             sc = new Scanner(filePath);
         } catch (IOException e) {
-            throw new TundraException("ERROR! I couldn't retrieve your tasks.");
+            return -1;
         }
 
         int bad = 0;
@@ -64,7 +63,7 @@ public class Storage {
                 pw.println(task.toStoredString());
             }
         } catch (IOException e) {
-            throw new TundraException("ERROR! I couldn't save your tasks.");
+            throw new TundraException("I'm sorry. I couldn't save your tasks.");
         }
     }
 
