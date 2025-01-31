@@ -1,6 +1,10 @@
 package tundra.views;
 
+import java.util.Scanner;
+
 public class Ui {
+
+    private Scanner sc = new Scanner(System.in);
 
     public static final String HORIZONTAL_LINE = "____________________________________________________________";
 
@@ -14,5 +18,9 @@ public class Ui {
             output = String.format("%s\t%s", output, string);
         }
         return String.format("%s\t%s\n", output, HORIZONTAL_LINE);
+    }
+
+    public String readCommand() {
+        return sc.nextLine();
     }
 }
