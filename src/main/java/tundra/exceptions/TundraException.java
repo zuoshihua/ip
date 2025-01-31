@@ -4,6 +4,6 @@ import tundra.views.Ui;
 
 public class TundraException extends RuntimeException {
     public TundraException(String message) {
-        super(Ui.formatMessage(message));
+        super(message);
     }
 }
