@@ -1,5 +1,7 @@
 package tundra.models;
 
+import tundra.utils.Parser;
+
 import java.time.LocalDateTime;
 
 public class DeadlineTask extends Task {
@@ -34,11 +36,17 @@ public class DeadlineTask extends Task {
 
     @Override
     public String toStoredString() {
-        return String.format("%s | %s | %s", TaskEnum.D, due.format(DATETIME_FORMATTER), super.toStoredString());
+        return String.format("%s | %s | %s",
+                TaskEnum.D,
+                due.format(Parser.OUTPUT_FORMAT),
+                super.toStoredString());
     }
 
     @Override
     public String toString() {
-        return String.format("[%s]%s (by: %s)", TaskEnum.D, super.toString(), due.format(DATETIME_FORMATTER));
+        return String.format("[%s]%s (by: %s)",
+                TaskEnum.D,
+                super.toString(),
+                due.format(Parser.OUTPUT_FORMAT));
     }
 }

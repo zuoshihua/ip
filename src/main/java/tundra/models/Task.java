@@ -4,7 +4,6 @@ import java.time.format.DateTimeFormatter;
 
 public class Task {
 
-    public static final DateTimeFormatter DATETIME_FORMATTER = DateTimeFormatter.ofPattern("MMM dd yyyy hh:mm a");
 
     private String name;
     private boolean completed;

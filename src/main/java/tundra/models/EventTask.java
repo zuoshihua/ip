@@ -1,11 +1,11 @@
 package tundra.models;
 
+import tundra.utils.Parser;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class EventTask extends Task {
-
-    public static final DateTimeFormatter fmt = DateTimeFormatter.ofPattern("MMM dd yyyy hh:mm a");
 
     private LocalDateTime from;
     private LocalDateTime to;
@@ -48,11 +48,17 @@ public class EventTask extends Task {
 
     @Override
     public String toStoredString() {
-        return String.format("%s | %s | %s | %s", TaskEnum.E, from.format(fmt), to.format(fmt), super.toStoredString());
+        return String.format("%s | %s | %s | %s",
+                TaskEnum.E, from.format(Parser.OUTPUT_FORMAT),
+                to.format(Parser.OUTPUT_FORMAT),
+                super.toStoredString());
     }
 
     @Override
     public String toString() {
-        return String.format("[%s]%s (from: %s to: %s)", TaskEnum.E, super.toString(), from.format(fmt), to.format(fmt));
+        return String.format("[%s]%s (from: %s to: %s)",
+                TaskEnum.E, super.toString(),
+                from.format(Parser.OUTPUT_FORMAT),
+                to.format(Parser.OUTPUT_FORMAT));
     }
 }
