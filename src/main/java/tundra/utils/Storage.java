@@ -11,6 +11,9 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Represents the text file containing tasks in their stored string representation.
+ */
 public class Storage {
 
     private static final String VALUE_SEPARATOR = " \\| ";
@@ -21,6 +24,11 @@ public class Storage {
         filePath = Path.of(path);
     }
 
+    /**
+     * Creates the text file if it does not exist.
+     * @param fp Path to the text file.
+     * @throws IOException If text file could not be created.
+     */
     private static void createSaveFile(Path fp) throws IOException {
         if (!Files.exists(fp.getParent())) {
             Files.createDirectories(fp.getParent());
@@ -30,6 +38,13 @@ public class Storage {
         }
     }
 
+    /**
+     * Populates a collection with the tasks read from the text file.
+     * @param tasks Collection of tasks.
+     * @return Status of the loading process where 0 means all tasks were loaded successfully,
+     * -1 means the text file could not be opened,
+     * an integer greater than 0 denotes the number of tasks that failed to load.
+     */
     public int load(ArrayList<Task> tasks) {
         Scanner sc;
         try {
@@ -57,6 +72,10 @@ public class Storage {
         return bad;
     }
 
+    /**
+     * Writes a collection of tasks in their stored string representations to the text file
+     * @param tasks Collection of tasks
+     */
     public void save(ArrayList<Task> tasks) {
         try (PrintWriter pw = new PrintWriter(filePath.toFile())){
             for (Task task : tasks) {

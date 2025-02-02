@@ -5,6 +5,11 @@ import tundra.utils.Parser;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Represents an event task the user can create.
+ * An <code>EventTask</code> has a name, a completed flag,
+ * a starting date and time and an ending date and time
+ */
 public class EventTask extends Task {
 
     private LocalDateTime from;
@@ -12,6 +17,14 @@ public class EventTask extends Task {
 
     public EventTask() {}
 
+    /**
+     * Creates a new <code>EventTask</code> with the specified name, the
+     * specified date, the specified starting date and time,
+     * the specified ending date and time and the completed flag unset.
+     * @param name Name of the event task
+     * @param from Starting date and time of the event task
+     * @param to Ending date and time of the event task
+     */
     public EventTask(String name, LocalDateTime from, LocalDateTime to) {
         super(name);
         this.from = from;

@@ -6,14 +6,25 @@ import tundra.models.TodoTask;
 import tundra.utils.Storage;
 import tundra.utils.TaskList;
 
+/**
+ * Represents the command "todo".
+ */
 public class TodoCommand extends Command {
 
+    /**
+     * {@inheritDoc}
+     * Takes one string argument in the form of "[name]".
+     */
     @Override
     public void init(String fullCommand) {
         String[] parts = fullCommand.split(" ", 2);
         setArguments(parts);
     }
 
+    /**
+     * {@inheritDoc}
+     * Adds a to-do task to the task list.
+     */
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) {
         String[] arguments = getArguments();
