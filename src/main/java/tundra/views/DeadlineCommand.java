@@ -10,8 +10,15 @@ import tundra.utils.TaskList;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 
+/**
+ * Represents the command "deadline".
+ */
 public class DeadlineCommand extends Command {
 
+    /**
+     * {@inheritDoc}
+     * Takes two arguments in the format "[description] /by [date/time]".
+     */
     @Override
     public void init(String fullCommand) {
         try {
@@ -24,6 +31,10 @@ public class DeadlineCommand extends Command {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     * Adds a deadline task into the task list.
+     */
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) {
         String[] arguments = getArguments();

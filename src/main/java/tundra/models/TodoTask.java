@@ -1,9 +1,17 @@
 package tundra.models;
 
+/**
+ * Represents a to-do task the user can create.
+ * A <code>TodoTask</code> has a name and a completed flag.
+ */
 public class TodoTask extends Task {
 
     public TodoTask() {}
 
+    /**
+     * Creates a new <code>TodoTask</code> with the specified name and completed flag unset.
+     * @param name Name of the to-do task.
+     */
     public TodoTask(String name) {
         super(name);
     }
