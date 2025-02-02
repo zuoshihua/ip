@@ -1,13 +1,12 @@
 package tundra.models;
 
-import java.time.format.DateTimeFormatter;
-
 public class Task {
 
     private String name;
     private boolean completed;
 
-    public Task() {}
+    public Task() {
+    }
 
     public Task(String name) {
         this.name = name;

@@ -7,7 +7,8 @@ public abstract class Command {
 
     private String[] arguments = null;
 
-    public Command() {}
+    public Command() {
+    }
 
     public String[] getArguments() {
         return arguments;

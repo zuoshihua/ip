@@ -2,7 +2,8 @@ package tundra.models;
 
 public class TodoTask extends Task {
 
-    public TodoTask() {}
+    public TodoTask() {
+    }
 
     public TodoTask(String name) {
         super(name);

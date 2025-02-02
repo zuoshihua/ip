@@ -1,14 +1,14 @@
 package tundra.views;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
+
 import tundra.exceptions.TundraException;
 import tundra.models.DeadlineTask;
 import tundra.models.Task;
 import tundra.utils.Parser;
 import tundra.utils.Storage;
 import tundra.utils.TaskList;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeParseException;
 
 public class DeadlineCommand extends Command {
 
@@ -17,7 +17,7 @@ public class DeadlineCommand extends Command {
         try {
             String body = fullCommand.split(" ", 2)[1];
             String[] parts = body.split(" /by ", 2);
-            setArguments(new String[] {parts[0], parts[1]});
+            setArguments(new String[]{parts[0], parts[1]});
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new TundraException("Incorrect syntax. " +
                     "Usage: deadline [description] /by [date/time]");
@@ -43,5 +43,4 @@ public class DeadlineCommand extends Command {
             throw new TundraException("Incorrect date/time format. Example: " + example);
         }
     }
-
 }

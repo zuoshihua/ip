@@ -1,16 +1,16 @@
 package tundra.models;
 
-import tundra.utils.Parser;
-
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+
+import tundra.utils.Parser;
 
 public class EventTask extends Task {
 
     private LocalDateTime from;
     private LocalDateTime to;
 
-    public EventTask() {}
+    public EventTask() {
+    }
 
     public EventTask(String name, LocalDateTime from, LocalDateTime to) {
         super(name);

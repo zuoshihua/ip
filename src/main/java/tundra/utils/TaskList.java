@@ -1,13 +1,9 @@
 package tundra.utils;
 
+import java.util.ArrayList;
+
 import tundra.exceptions.TundraException;
 import tundra.models.Task;
-import tundra.models.TaskEnum;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 public class TaskList {
 
@@ -53,5 +49,4 @@ public class TaskList {
     public void save(Storage storage) {
         storage.save(tasks);
     }
-
 }

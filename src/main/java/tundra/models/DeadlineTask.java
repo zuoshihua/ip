@@ -1,14 +1,15 @@
 package tundra.models;
 
-import tundra.utils.Parser;
-
 import java.time.LocalDateTime;
+
+import tundra.utils.Parser;
 
 public class DeadlineTask extends Task {
 
     private LocalDateTime due;
 
-    public DeadlineTask() {}
+    public DeadlineTask() {
+    }
 
     public DeadlineTask(String name, LocalDateTime due) {
         super(name);

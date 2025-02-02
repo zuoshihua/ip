@@ -1,15 +1,15 @@
 package tundra.utils;
 
-import tundra.exceptions.TundraException;
-import tundra.models.Task;
-import tundra.models.TaskEnum;
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import tundra.exceptions.TundraException;
+import tundra.models.Task;
+import tundra.models.TaskEnum;
 
 public class Storage {
 
@@ -58,7 +58,7 @@ public class Storage {
     }
 
     public void save(ArrayList<Task> tasks) {
-        try (PrintWriter pw = new PrintWriter(filePath.toFile())){
+        try (PrintWriter pw = new PrintWriter(filePath.toFile())) {
             for (Task task : tasks) {
                 pw.println(task.toStoredString());
             }

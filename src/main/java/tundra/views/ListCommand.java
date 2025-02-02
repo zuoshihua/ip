@@ -1,10 +1,10 @@
 package tundra.views;
 
+import java.util.ArrayList;
+
 import tundra.models.Task;
 import tundra.utils.Storage;
 import tundra.utils.TaskList;
-
-import java.util.ArrayList;
 
 public class ListCommand extends Command {
 

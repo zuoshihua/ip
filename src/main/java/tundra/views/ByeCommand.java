@@ -5,7 +5,6 @@ import tundra.utils.TaskList;
 
 public class ByeCommand extends Command {
 
-
     @Override
     public void init(String fullCommand) {
         setArguments(fullCommand.split(" "));
