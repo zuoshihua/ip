@@ -3,6 +3,7 @@ package tundra.views;
 public enum CommandEnum {
     HELP(new HelpCommand()),
     LIST(new ListCommand()),
+    FIND(new FindCommand()),
     DELETE(new DeleteCommand()),
     MARK(new MarkCommand()),
     UNMARK(new UnmarkCommand()),
