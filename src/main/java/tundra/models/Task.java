@@ -1,5 +1,10 @@
 package tundra.models;
 
+
+/**
+ * Represents a task the user can create.
+ * A <code>Task</code> has a name and a completed flag.
+ */
 public class Task {
 
     private String name;
@@ -8,11 +13,23 @@ public class Task {
     public Task() {
     }
 
+    /**
+     * Creates a new <code>Task</code> with the specified name and completed flag unset.
+     * @param name Name of the task.
+     */
     public Task(String name) {
         this.name = name;
         this.completed = false;
     }
 
+    /**
+     * Processes the stored string representation of the <code>Task</code> and sets
+     * its name and completed flag accordingly.
+     * Returns true if processed successfully.
+     * @param str Stored string.
+     * @param separator Delimiter used in stored string.
+     * @return Outcome of processing.
+     */
     public boolean fromStoredString(String str, String separator) {
         String[] parts = str.split(separator, 2);
         try {

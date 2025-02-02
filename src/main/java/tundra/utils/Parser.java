@@ -7,6 +7,10 @@ import tundra.views.Command;
 import tundra.views.CommandEnum;
 import tundra.views.HelpCommand;
 
+
+/**
+ * A non-instantiable utility class to convert a user input string into a <code>Command</code> instance.
+ */
 public class Parser {
 
     public static final DateTimeFormatter INPUT_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
@@ -16,6 +20,11 @@ public class Parser {
 
     }
 
+    /**
+     * Returns a <code>Command</code> based on user input.
+     * @param input User input string from standard input.
+     * @return Command corresponding to the user input.
+     */
     public static Command parse(String input) {
         if (input.contains("|")) {
             throw new TundraException("I'm sorry. You are not allowed to use the '|' symbol");

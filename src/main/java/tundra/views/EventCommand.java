@@ -10,8 +10,16 @@ import tundra.utils.Parser;
 import tundra.utils.Storage;
 import tundra.utils.TaskList;
 
+
+/**
+ * Represents the command "event".
+ */
 public class EventCommand extends Command {
 
+    /**
+     * {@inheritDoc}
+     * Takes three arguments in the format "[description] /from [date/time] /to [date/time]".
+     */
     @Override
     public void init(String fullCommand) {
         try {
@@ -25,6 +33,10 @@ public class EventCommand extends Command {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     * Adds an event task into the task list.
+     */
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) {
         String[] arguments = getArguments();

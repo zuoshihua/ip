@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import tundra.exceptions.TundraException;
 import tundra.models.Task;
 
+/**
+ * Represents a collection of tasks.
+ */
 public class TaskList {
 
     private final ArrayList<Task> tasks;
@@ -37,6 +40,10 @@ public class TaskList {
         return tasks.size();
     }
 
+    /**
+     * Loads tasks from the specified storage source.
+     * @param storage A storage source that contains tasks.
+     */
     public void load(Storage storage) {
         int status = storage.load(tasks);
         if (status < 0) {
@@ -46,6 +53,10 @@ public class TaskList {
         }
     }
 
+    /**
+     * Saves tasks from the specified storage source.
+     * @param storage A storage source that contains tasks.
+     */
     public void save(Storage storage) {
         storage.save(tasks);
     }

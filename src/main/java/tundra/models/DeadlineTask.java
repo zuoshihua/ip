@@ -4,6 +4,11 @@ import java.time.LocalDateTime;
 
 import tundra.utils.Parser;
 
+
+/**
+ * Represents a deadline task the user can create.
+ * A <code>DeadlineTask</code> has a name, a completed flag and a due date and time.
+ */
 public class DeadlineTask extends Task {
 
     private LocalDateTime due;
@@ -11,6 +16,12 @@ public class DeadlineTask extends Task {
     public DeadlineTask() {
     }
 
+    /**
+     * Creates a new <code>DeadlineTask</code> with the specified name, the
+     * specified date and the completed flag unset.
+     * @param name Name of the deadline task.
+     * @param due Due date and time of the deadline task.
+     */
     public DeadlineTask(String name, LocalDateTime due) {
         super(name);
         this.due = due;

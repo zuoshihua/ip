@@ -2,6 +2,9 @@ package tundra.views;
 
 import java.util.Scanner;
 
+/**
+ * Represents a user interface the user interacts with to use the application
+ */
 public class Ui {
 
     public static final String HORIZONTAL_LINE = "____________________________________________________________";
@@ -9,16 +12,30 @@ public class Ui {
     private final Scanner sc;
     private boolean isRunning;
 
+    /**
+     * Creates a new user interface instance.
+     * Prints the welcome message.
+     */
     public Ui() {
         sc = new Scanner(System.in);
         isRunning = true;
         printMessage("Hello I'm Tundra!\n", "What can I do for you?\n");
     }
 
+    /**
+     * Convenience method to print the formatted speech bubble.
+     * @param strings Variadic argument representing strings to format.
+     * @see #formatMessage(String...)
+     */
     public void printMessage(String... strings) {
         System.out.print(formatMessage(strings));
     }
 
+    /**
+     * Formats multiple strings as a speech bubble.
+     * @param strings Variadic argument representing strings to format.
+     * @return Formatted speech bubble.
+     */
     public String formatMessage(String... strings) {
         String output = String.format("\t%s\n", HORIZONTAL_LINE);
         for (String string : strings) {

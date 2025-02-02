@@ -1,5 +1,8 @@
 package tundra.views;
 
+/**
+ * Represents the type of {@link Command} with its name in all uppercase.
+ */
 public enum CommandEnum {
     HELP(new HelpCommand()),
     LIST(new ListCommand()),
