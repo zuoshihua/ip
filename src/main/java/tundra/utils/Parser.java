@@ -37,7 +37,6 @@ public class Parser {
             command.init(input);
             return command;
         } catch (ArrayIndexOutOfBoundsException | IllegalArgumentException e) {
-            System.out.println(e.getClass().getSimpleName() + ": " + e.getMessage());
             HelpCommand help = new HelpCommand();
             help.init("");
             return help;
