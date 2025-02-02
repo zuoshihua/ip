@@ -1,6 +1,5 @@
 package tundra.exceptions;
 
-import tundra.views.Ui;
 
 /**
  * Represents a problem encountered by the application.

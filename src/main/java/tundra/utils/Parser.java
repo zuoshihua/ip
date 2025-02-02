@@ -1,11 +1,12 @@
 package tundra.utils;
 
+import java.time.format.DateTimeFormatter;
+
 import tundra.exceptions.TundraException;
 import tundra.views.Command;
 import tundra.views.CommandEnum;
 import tundra.views.HelpCommand;
 
-import java.time.format.DateTimeFormatter;
 
 /**
  * A non-instantiable utility class to convert a user input string into a <code>Command</code> instance.
@@ -15,7 +16,9 @@ public class Parser {
     public static final DateTimeFormatter INPUT_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
     public static final DateTimeFormatter OUTPUT_FORMAT = DateTimeFormatter.ofPattern("MMM dd yyyy hh:mm a");
 
-    private Parser() {}
+    private Parser() {
+
+    }
 
     /**
      * Returns a <code>Command</code> based on user input.
@@ -26,6 +29,7 @@ public class Parser {
         if (input.contains("|")) {
             throw new TundraException("I'm sorry. You are not allowed to use the '|' symbol");
         }
+
         try {
             String[] args = input.split(" ", 2);
             String name = args[0].toUpperCase();

@@ -6,7 +6,8 @@ package tundra.models;
  */
 public class TodoTask extends Task {
 
-    public TodoTask() {}
+    public TodoTask() {
+    }
 
     /**
      * Creates a new <code>TodoTask</code> with the specified name and completed flag unset.

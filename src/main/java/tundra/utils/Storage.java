@@ -1,15 +1,16 @@
 package tundra.utils;
 
-import tundra.exceptions.TundraException;
-import tundra.models.Task;
-import tundra.models.TaskEnum;
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import tundra.exceptions.TundraException;
+import tundra.models.Task;
+import tundra.models.TaskEnum;
+
 
 /**
  * Represents the text file containing tasks in their stored string representation.
@@ -77,7 +78,7 @@ public class Storage {
      * @param tasks Collection of tasks
      */
     public void save(ArrayList<Task> tasks) {
-        try (PrintWriter pw = new PrintWriter(filePath.toFile())){
+        try (PrintWriter pw = new PrintWriter(filePath.toFile())) {
             for (Task task : tasks) {
                 pw.println(task.toStoredString());
             }

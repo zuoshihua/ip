@@ -1,8 +1,9 @@
 package tundra.models;
 
+import java.time.LocalDateTime;
+
 import tundra.utils.Parser;
 
-import java.time.LocalDateTime;
 
 /**
  * Represents a deadline task the user can create.
@@ -12,7 +13,8 @@ public class DeadlineTask extends Task {
 
     private LocalDateTime due;
 
-    public DeadlineTask() {}
+    public DeadlineTask() {
+    }
 
     /**
      * Creates a new <code>DeadlineTask</code> with the specified name, the

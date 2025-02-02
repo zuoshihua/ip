@@ -1,6 +1,5 @@
 package tundra.models;
 
-import java.time.format.DateTimeFormatter;
 
 /**
  * Represents a task the user can create.
@@ -11,7 +10,8 @@ public class Task {
     private String name;
     private boolean completed;
 
-    public Task() {}
+    public Task() {
+    }
 
     /**
      * Creates a new <code>Task</code> with the specified name and completed flag unset.

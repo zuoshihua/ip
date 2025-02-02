@@ -1,9 +1,8 @@
 package tundra.models;
 
-import tundra.utils.Parser;
-
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+
+import tundra.utils.Parser;
 
 /**
  * Represents an event task the user can create.
@@ -15,7 +14,8 @@ public class EventTask extends Task {
     private LocalDateTime from;
     private LocalDateTime to;
 
-    public EventTask() {}
+    public EventTask() {
+    }
 
     /**
      * Creates a new <code>EventTask</code> with the specified name, the

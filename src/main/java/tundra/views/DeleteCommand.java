@@ -15,7 +15,7 @@ public class DeleteCommand extends Command {
      * Takes one integer argument.
      */
     @Override
-    public void init (String fullCommand) {
+    public void init(String fullCommand) {
         String[] parts = fullCommand.split(" ", 2);
         setArguments(parts);
     }
@@ -43,5 +43,4 @@ public class DeleteCommand extends Command {
             throw new TundraException("No such task. Enter 'list' to see all tasks");
         }
     }
-
 }

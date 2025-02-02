@@ -1,5 +1,8 @@
 package tundra.views;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
+
 import tundra.exceptions.TundraException;
 import tundra.models.EventTask;
 import tundra.models.Task;
@@ -7,8 +10,6 @@ import tundra.utils.Parser;
 import tundra.utils.Storage;
 import tundra.utils.TaskList;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeParseException;
 
 /**
  * Represents the command "event".

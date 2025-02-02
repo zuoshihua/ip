@@ -3,11 +3,11 @@ package tundra.views;
 import tundra.utils.Storage;
 import tundra.utils.TaskList;
 
+
 /**
  * Represents the command "bye".
  */
 public class ByeCommand extends Command {
-
 
     /**
      * {@inheritDoc}
