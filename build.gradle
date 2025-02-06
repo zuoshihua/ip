@@ -32,7 +32,7 @@ test {
 }
 
 application {
-    mainClass.set("tundra.Tundra")
+    mainClass.set("Main")
 }
 
 shadowJar {
