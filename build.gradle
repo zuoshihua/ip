@@ -2,7 +2,11 @@ plugins {
     id 'java'
     id 'application'
     id 'com.github.johnrengelman.shadow' version '7.1.2'
+    id 'checkstyle'
 }
+
+sourceCompatibility = "17"
+targetCompatibility = "17"
 
 repositories {
     mavenCentral()
@@ -38,4 +42,8 @@ shadowJar {
 
 run{
     standardInput = System.in
+}
+
+checkstyle {
+    toolVersion = '10.2'
 }

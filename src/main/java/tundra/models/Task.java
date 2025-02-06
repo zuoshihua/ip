@@ -8,7 +8,7 @@ package tundra.models;
 public class Task {
 
     private String name;
-    private boolean completed;
+    private boolean isCompleted;
 
     public Task() {
     }
@@ -19,7 +19,7 @@ public class Task {
      */
     public Task(String name) {
         this.name = name;
-        this.completed = false;
+        this.isCompleted = false;
     }
 
     /**
@@ -50,19 +50,19 @@ public class Task {
     }
 
     public boolean isCompleted() {
-        return completed;
+        return isCompleted;
     }
 
     public void setCompleted(boolean completed) {
-        this.completed = completed;
+        this.isCompleted = completed;
     }
 
     public String toStoredString() {
-        return String.format("%s | %s", completed ? "1" : "0", name);
+        return String.format("%s | %s", isCompleted ? "1" : "0", name);
     }
 
     @Override
     public String toString() {
-        return String.format("[%s] %s", completed ? "X" : " ", name);
+        return String.format("[%s] %s", isCompleted ? "X" : " ", name);
     }
 }

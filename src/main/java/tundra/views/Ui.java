@@ -52,6 +52,9 @@ public class Ui {
         return sc.nextLine();
     }
 
+    /**
+     * Prints a farewell message and sets isRunning to false
+     */
     public void exit() {
         printMessage("Bye. Hope to see you again soon!\n");
         sc.close();

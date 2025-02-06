@@ -1,12 +1,13 @@
 package tundra.models;
 
-import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import tundra.utils.Parser;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+
+import org.junit.jupiter.api.Test;
+
+import tundra.utils.Parser;
 
 
 public class DeadlineTaskTest {
