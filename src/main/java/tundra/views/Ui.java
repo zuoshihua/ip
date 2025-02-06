@@ -11,6 +11,7 @@ public class Ui {
 
     private final Scanner sc;
     private boolean isRunning;
+    private String lastMessage;
 
     /**
      * Creates a new user interface instance.
@@ -28,7 +29,9 @@ public class Ui {
      * @see #formatMessage(String...)
      */
     public void printMessage(String... strings) {
-        System.out.print(formatMessage(strings));
+        String formattedMessage = formatMessage(strings);
+        System.out.print(formattedMessage);
+        lastMessage = String.join("", strings);
     }
 
     /**
@@ -46,6 +49,10 @@ public class Ui {
 
     public boolean isRunning() {
         return isRunning;
+    }
+
+    public String getLastMessage() {
+        return lastMessage;
     }
 
     public String readCommand() {
