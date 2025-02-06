@@ -28,8 +28,8 @@ public class EventCommand extends Command {
             String[] second = first[1].split(" /to ", 2);
             setArguments(new String[]{first[0], second[0], second[1]});
         } catch (ArrayIndexOutOfBoundsException e) {
-            throw new TundraException("Incorrect syntax. " +
-                    "Usage: event [description] /from [date/time] /to [date/time]");
+            throw new TundraException("Incorrect syntax. "
+                    + "Usage: event [description] /from [date/time] /to [date/time]");
         }
     }
 

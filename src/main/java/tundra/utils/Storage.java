@@ -41,10 +41,11 @@ public class Storage {
 
     /**
      * Populates a collection with the tasks read from the text file.
+     * Returns an integer of value 0, -1 or greater than 0.
+     * 0 means all tasks were loaded successfully, -1 means text file could not be opened,
+     * any value greater than 0 denotes the number of tasks that failed to load.
      * @param tasks Collection of tasks.
-     * @return Status of the loading process where 0 means all tasks were loaded successfully,
-     * -1 means the text file could not be opened,
-     * an integer greater than 0 denotes the number of tasks that failed to load.
+     * @return Success code of the loading process.
      */
     public int load(ArrayList<Task> tasks) {
         Scanner sc;
@@ -61,10 +62,11 @@ public class Storage {
             String[] parts = line.split(VALUE_SEPARATOR, 2);
             try {
                 Task task = TaskEnum.valueOf(parts[0]).getTask();
-                if (task.fromStoredString(parts[1], VALUE_SEPARATOR))
+                if (task.fromStoredString(parts[1], VALUE_SEPARATOR)) {
                     tasks.add(task);
-                else
+                } else {
                     bad++;
+                }
             } catch (IllegalArgumentException | ArrayIndexOutOfBoundsException e) {
                 bad++;
             }

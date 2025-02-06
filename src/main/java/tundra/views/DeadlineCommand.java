@@ -27,8 +27,8 @@ public class DeadlineCommand extends Command {
             String[] parts = body.split(" /by ", 2);
             setArguments(new String[]{parts[0], parts[1]});
         } catch (ArrayIndexOutOfBoundsException e) {
-            throw new TundraException("Incorrect syntax. " +
-                    "Usage: deadline [description] /by [date/time]");
+            throw new TundraException("Incorrect syntax. "
+                    + "Usage: deadline [description] /by [date/time]");
         }
     }
 
