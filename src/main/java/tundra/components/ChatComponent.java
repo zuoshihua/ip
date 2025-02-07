@@ -1,10 +1,6 @@
 package tundra.components;
 
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
-
+import javafx.animation.PauseTransition;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -12,6 +8,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.util.Duration;
 import tundra.Tundra;
 import tundra.utils.Theme;
 
@@ -36,8 +33,6 @@ public class ChatComponent extends AnchorPane {
 
     private Theme theme;
 
-    private ScheduledExecutorService executor;
-
     /**
      * Binds the scrollPane vvalue to the messageContainer height.
      */
@@ -58,14 +53,6 @@ public class ChatComponent extends AnchorPane {
     }
 
     /**
-     * Injects a ScheduledExecutorService instance.
-     * @param executor
-     */
-    public void setExecutor(ScheduledExecutorService executor) {
-        this.executor = executor;
-    }
-
-    /**
      * Creates two dialog boxes, one echoing input and the other containing Duke's reply
      * and then appends them to the dialog container.
      * Clears the user input after processing.
@@ -81,7 +68,9 @@ public class ChatComponent extends AnchorPane {
         userInput.clear();
 
         if (tundra.shouldExit()) {
-            executor.schedule(Platform::exit, 1, TimeUnit.SECONDS);
+            PauseTransition delay = new PauseTransition(Duration.seconds(1));
+            delay.setOnFinished(e -> Platform.exit());
+            delay.play();
         }
     }
 
