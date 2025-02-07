@@ -31,6 +31,7 @@
 .text-field {
     -fx-background-color: #4c566a;
     -fx-text-fill: #d8dee9;
+    -fx-prompt-text-fill: #81a1c1;
 }
 
 .menu-bar {
