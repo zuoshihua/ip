@@ -85,4 +85,8 @@ public class Tundra {
         }
     }
 
+    public boolean shouldExit() {
+        return !ui.isRunning();
+    }
+
 }

@@ -1,6 +1,8 @@
 package tundra;
 
 import java.io.IOException;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -15,6 +17,7 @@ import tundra.components.ChatComponent;
 public class App extends Application {
 
     private Tundra tundra = new Tundra("./data/tundra.txt");
+    private ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
 
     /**
      * Loads ChatComponent FXML and launches the application.
@@ -29,9 +32,15 @@ public class App extends Application {
             primaryStage.setMinHeight(220);
             primaryStage.setMinWidth(417);
             fxmlLoader.<ChatComponent>getController().setTundra(tundra);
+            fxmlLoader.<ChatComponent>getController().setExecutor(executor);
             primaryStage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void stop() throws Exception {
+        executor.shutdown();
     }
 }
