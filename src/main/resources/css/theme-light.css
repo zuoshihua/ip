@@ -1,0 +1,84 @@
+.root {
+    main-color: #e5e9f0;
+    -fx-background-color: main-color;
+}
+
+.scroll-pane {
+    -fx-background-color: main-color;
+}
+
+.scroll-pane .viewport {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar {
+    -fx-font-size: 10px;
+    -fx-background-color: #d8dee9;
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: #4c566a;
+    -fx-background-radius: 1em;
+}
+
+/* Hides the increment and decrement buttons. */
+.scroll-bar .increment-button,
+.scroll-bar .decrement-button {
+    -fx-pref-height: 0;
+    -fx-opacity: 0;
+}
+
+.text-field {
+    -fx-background-color: #d8dee9;
+    -fx-text-fill: #2e3440;
+    -fx-prompt-text-fill: #81a1c1;
+}
+
+.menu-bar {
+    -fx-background-color: #d8dee9;
+}
+
+.menu-bar .label {
+    -fx-background-color: transparent;
+}
+
+.menu-bar .context-menu {
+    -fx-background-color: #d8dee9;
+}
+
+.menu:hover {
+    -fx-background-color: #88c0d0;
+}
+
+.menu:showing {
+    -fx-background-color: #88c0d0;
+}
+
+.radio-menu-item {
+    -fx-background-color: #d8dee9;
+}
+
+.radio-menu-item:hover {
+    -fx-background-color: #4c566a;
+    -fx-mark-color: #d8dee9;
+}
+
+.radio-menu-item:hover .label {
+    -fx-text-fill: #d8dee9;
+}
+
+.radio-menu-item:checked {
+    -fx-mark-color: #2e3440;
+}
+
+.label {
+    -fx-background-color: #88c0d0;
+    -fx-background-radius: 0.5em;
+    -fx-text-fill: #2e3440;
+}
+
+.reply-label {
+    -fx-background-color: #8fbcbb;
+    -fx-background-radius: 0.5em;
+    -fx-text-fill: #2e3440;
+}

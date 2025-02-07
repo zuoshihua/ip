@@ -8,14 +8,69 @@ import tundra.views.Command;
 import tundra.views.Ui;
 
 /**
- * Represents the entry point of the application
+ * Represents the entry point of the application.
  */
 public class Tundra {
 
     private final String path;
 
+    private Ui ui;
+    private Storage storage;
+    private TaskList tasks;
+
+    /**
+     * Constructs a new Tundra instance.
+     *
+     * @param path Location of the Tundra text file.
+     */
     public Tundra(String path) {
         this.path = path;
+        ui = new Ui();
+        storage = new Storage(path);
+        tasks = new TaskList();
+    }
+
+    /**
+     * Loads all tasks from Tundra text file.
+     *
+     * Any tasks not yet written to Tundra text file will be lost.
+     */
+    public void loadAllTasks() {
+        if (tasks.size() > 0) {
+            tasks = new TaskList();
+        }
+
+        try {
+            tasks.load(storage);
+            ui.printMessage("I have successfully loaded all tasks!");
+        } catch (TundraException e) {
+            ui.printMessage(e.getMessage());
+        }
+    }
+
+    /**
+     * Returns the output of running a single command.
+     *
+     * @return The command output.
+     */
+    public String runCommand(String fullCommand) {
+        try {
+            Command c = Parser.parse(fullCommand);
+            c.execute(tasks, ui, storage);
+        } catch (TundraException e) {
+            ui.printMessage(e.getMessage() + "\n");
+        }
+
+        return ui.getLastMessage();
+    }
+
+    /**
+     * Returns the last message printed to standard output.
+     *
+     * @return The cached output.
+     */
+    public String getLastMessage() {
+        return ui.getLastMessage();
     }
 
     /**
@@ -23,32 +78,11 @@ public class Tundra {
      * The user interface, storage source and task list are instantiated.
      */
     public void run() {
-        Ui ui = new Ui();
-        Storage storage = new Storage(path);
-        TaskList tasks = new TaskList();
-        try {
-            tasks.load(storage);
-        } catch (TundraException e) {
-            ui.printMessage(e.getMessage());
-        }
-
+        loadAllTasks();
         while (ui.isRunning()) {
-            try {
-                String fullCommand = ui.readCommand();
-                Command c = Parser.parse(fullCommand);
-                c.execute(tasks, ui, storage);
-            } catch (TundraException e) {
-                ui.printMessage(e.getMessage() + "\n");
-            }
+            String fullCommand = ui.readCommand();
+            runCommand(fullCommand);
         }
     }
 
-    /**
-     * Instantiates a new application instance and runs it.
-     * Takes no command line arguments.
-     * @param args Supplied command line arguments.
-     */
-    public static void main(String[] args) {
-        new Tundra("./data/tundra.txt").run();
-    }
 }
