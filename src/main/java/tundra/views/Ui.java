@@ -28,7 +28,7 @@ public class Ui {
      * @param strings Variadic argument representing strings to format.
      * @see #formatMessage(String...)
      */
-    public void printMessage(String... strings) {
+    public void printMessage(String[] strings) {
         String formattedMessage = formatMessage(strings);
         System.out.print(formattedMessage);
         lastMessage = String.join("", strings);
@@ -39,7 +39,7 @@ public class Ui {
      * @param strings Variadic argument representing strings to format.
      * @return Formatted speech bubble.
      */
-    public String formatMessage(String... strings) {
+    public String formatMessage(String[] strings) {
         String output = String.format("\t%s\n", HORIZONTAL_LINE);
         for (String string : strings) {
             output = String.format("%s\t%s", output, string);
