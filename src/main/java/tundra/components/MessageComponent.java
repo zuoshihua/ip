@@ -8,6 +8,9 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 
+/**
+ * Provides logic for MessageComponent FXML.
+ */
 public class MessageComponent extends HBox {
 
     @FXML
@@ -26,15 +29,27 @@ public class MessageComponent extends HBox {
         label.setText(text);
     }
 
-    public void flip() {
+    private void flip() {
         setAlignment(Pos.TOP_LEFT);
         label.getStyleClass().add("reply-label");
     }
 
+    /**
+     * Returns a new chat message component sent by the user.
+     *
+     * @param text Content of the message.
+     * @return The {@link MessageComponent} containing the provided content.
+     */
     public static MessageComponent getUserMessageComponent(String text) {
         return new MessageComponent(text);
     }
 
+    /**
+     * Returns a new chat message component sent by Tundra.
+     *
+     * @param text Content of the message.
+     * @return The {@link MessageComponent} containing the provided content.
+     */
     public static MessageComponent getTundraMessageComponent(String text) {
         var mc = new MessageComponent(text);
         mc.flip();

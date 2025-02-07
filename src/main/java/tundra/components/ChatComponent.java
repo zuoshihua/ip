@@ -6,10 +6,12 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
-import tundra.App;
 import tundra.Tundra;
 import tundra.utils.Theme;
 
+/**
+ * Provides logic for ChatComponent FXML.
+ */
 public class ChatComponent extends AnchorPane {
 
     @FXML
@@ -28,11 +30,17 @@ public class ChatComponent extends AnchorPane {
 
     private Theme theme;
 
+    /**
+     * Binds the scrollPane vvalue to the messageContainer height.
+     */
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(messageContainer.heightProperty());
     }
 
+    /**
+     * Injects a Tundra instance, loads all tasks and sets application theme to dark.
+     */
     public void setTundra(Tundra t) {
         addTundraMessage(t.getLastMessage());
         t.loadAllTasks();
@@ -57,6 +65,11 @@ public class ChatComponent extends AnchorPane {
         userInput.clear();
     }
 
+    /**
+     * Sets application theme to light.
+     *
+     * Peforms no action if application theme was light.
+     */
     @FXML
     public void setThemeLight() {
         if (theme == Theme.LIGHT_THEME) {
@@ -70,6 +83,11 @@ public class ChatComponent extends AnchorPane {
         theme = Theme.LIGHT_THEME;
     }
 
+    /**
+     * Sets application theme to dark.
+     *
+     * Peforms no action if application theme was dark.
+     */
     @FXML
     public void setThemeDark() {
         if (theme == Theme.DARK_THEME) {

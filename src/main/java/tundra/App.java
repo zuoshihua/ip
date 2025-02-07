@@ -9,10 +9,16 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import tundra.components.ChatComponent;
 
+/**
+ * Models a JavaFX application.
+ */
 public class App extends Application {
 
     private Tundra tundra = new Tundra("./data/tundra.txt");
 
+    /**
+     * Loads ChatComponent FXML and launches the application.
+     */
     @Override
     public void start(Stage primaryStage) throws Exception {
         try {
@@ -28,5 +34,4 @@ public class App extends Application {
             e.printStackTrace();
         }
     }
-    
 }
