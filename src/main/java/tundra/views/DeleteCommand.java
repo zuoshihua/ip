@@ -27,6 +27,8 @@ public class DeleteCommand extends Command {
      */
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) {
+        assert taskList != null;
+        assert ui != null;
         String[] arguments = getArguments();
         try {
             int i = Integer.parseInt(arguments[1]) - 1;

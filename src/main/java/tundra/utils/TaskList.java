@@ -45,6 +45,7 @@ public class TaskList {
      * @param storage A storage source that contains tasks.
      */
     public void load(Storage storage) {
+        assert storage != null;
         int status = storage.load(tasks);
         if (status < 0) {
             throw new TundraException("I'm sorry. I couldn't retrieve your tasks.");
@@ -58,6 +59,7 @@ public class TaskList {
      * @param storage A storage source that contains tasks.
      */
     public void save(Storage storage) {
+        assert storage != null;
         storage.save(tasks);
     }
 }

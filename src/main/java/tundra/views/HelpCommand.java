@@ -26,6 +26,7 @@ public class HelpCommand extends Command {
      */
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) {
+        assert ui != null;
         ArrayList<String> lines = new ArrayList<String>();
         lines.add("Commands:\n");
         for (CommandEnum command : CommandEnum.values()) {

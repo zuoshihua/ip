@@ -31,6 +31,7 @@ public class UnmarkCommand extends Command {
         try {
             int i = Integer.parseInt(arguments[1]) - 1;
             Task task = taskList.get(i);
+            assert task != null;
             task.setCompleted(false);
             taskList.update(i, task);
             ui.printMessage(
