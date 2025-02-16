@@ -27,6 +27,8 @@ public class FindCommand extends Command {
      */
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) {
+        assert taskList != null;
+        assert ui != null;
         ArrayList<String> lines = new ArrayList<>();
         String[] arguments = getArguments();
         lines.add("Here are the matching tasks in your list:\n");
