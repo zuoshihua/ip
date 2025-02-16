@@ -40,6 +40,10 @@ public class TaskList {
         return tasks.size();
     }
 
+    public boolean contains(Task task) {
+        return tasks.contains(task);
+    }
+
     /**
      * Loads tasks from the specified storage source.
      * @param storage A storage source that contains tasks.
