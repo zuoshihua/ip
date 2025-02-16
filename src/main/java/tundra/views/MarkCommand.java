@@ -27,10 +27,12 @@ public class MarkCommand extends Command {
      */
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) {
+        assert taskList != null;
         String[] arguments = getArguments();
         try {
             int i = Integer.parseInt(arguments[1]) - 1;
             Task task = taskList.get(i);
+            assert task != null;
             task.setCompleted(true);
             taskList.update(i, task);
             ui.printMessage(

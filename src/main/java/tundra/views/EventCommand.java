@@ -39,6 +39,8 @@ public class EventCommand extends Command {
      */
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) {
+        assert taskList != null;
+        assert ui != null;
         String[] arguments = getArguments();
         try {
             LocalDateTime from = LocalDateTime.parse(arguments[1], Parser.INPUT_FORMAT);

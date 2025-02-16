@@ -38,6 +38,7 @@ public class DeadlineCommand extends Command {
      */
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) {
+        assert taskList != null;
         String[] arguments = getArguments();
         try {
             LocalDateTime due = LocalDateTime.parse(arguments[1], Parser.INPUT_FORMAT);
