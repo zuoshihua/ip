@@ -10,6 +10,7 @@ import tundra.utils.TaskList;
 public abstract class Command {
 
     private String[] arguments = null;
+    private boolean isForced = false;
 
     public Command() {
     }
@@ -20,6 +21,14 @@ public abstract class Command {
 
     public void setArguments(String[] arguments) {
         this.arguments = arguments;
+    }
+
+    public void setForced(boolean forced) {
+        this.isForced = forced;
+    }
+
+    public boolean isForced() {
+        return isForced;
     }
 
     /**

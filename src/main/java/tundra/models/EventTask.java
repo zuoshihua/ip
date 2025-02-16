@@ -74,4 +74,19 @@ public class EventTask extends Task {
                 from.format(Parser.OUTPUT_FORMAT),
                 to.format(Parser.OUTPUT_FORMAT));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if(!super.equals(other)) {
+            return false;
+        }
+
+        if (!(other instanceof EventTask)) {
+            return false;
+        }
+
+        EventTask otherTask = (EventTask) other;
+        return from.equals(otherTask.from)
+                && to.equals(otherTask.to);
+}
 }

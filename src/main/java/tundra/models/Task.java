@@ -65,4 +65,18 @@ public class Task {
     public String toString() {
         return String.format("[%s] %s", isCompleted ? "X" : " ", name);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Task)) {
+            return false;
+        }
+
+        Task otherTask = (Task) other;
+        return name.equals(otherTask.name);
+    }
 }

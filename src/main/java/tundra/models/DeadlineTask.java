@@ -61,4 +61,18 @@ public class DeadlineTask extends Task {
                 super.toString(),
                 due.format(Parser.OUTPUT_FORMAT));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (!super.equals(other)) {
+            return false;
+        }
+
+        if (!(other instanceof DeadlineTask)) {
+            return false;
+        }
+
+        DeadlineTask otherTask = (DeadlineTask) other;
+        return due.equals(otherTask.due);
+    }
 }
