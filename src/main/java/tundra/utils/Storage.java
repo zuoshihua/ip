@@ -59,17 +59,7 @@ public class Storage {
         int bad = 0;
         while (sc.hasNextLine()) {
             String line = sc.nextLine();
-            String[] parts = line.split(VALUE_SEPARATOR, 2);
-            try {
-                Task task = TaskEnum.valueOf(parts[0]).getTask();
-                if (task.fromStoredString(parts[1], VALUE_SEPARATOR)) {
-                    tasks.add(task);
-                } else {
-                    bad++;
-                }
-            } catch (IllegalArgumentException | ArrayIndexOutOfBoundsException e) {
-                bad++;
-            }
+            bad += addTask(tasks, line) ? 0 : 1;
         }
         sc.close();
 
@@ -90,4 +80,16 @@ public class Storage {
         }
     }
 
+    private boolean addTask(ArrayList<Task> tasks, String line) {
+        boolean isAdded;
+        String[] parts = line.split(VALUE_SEPARATOR, 2);
+        try {
+            Task task = TaskEnum.valueOf(parts[0]).getTask();
+            isAdded = task.fromStoredString(parts[1], VALUE_SEPARATOR);
+            tasks.add(task);
+        } catch (IllegalArgumentException | ArrayIndexOutOfBoundsException e) {
+            isAdded = false;
+        }
+        return isAdded;
+    }
 }
