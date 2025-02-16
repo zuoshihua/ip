@@ -35,4 +35,18 @@ public class TodoTask extends Task {
     public String toString() {
         return String.format("[%s]%s", TaskEnum.T, super.toString());
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (!super.equals(other)) {
+            return false;
+        };
+
+        if (!(other instanceof TodoTask)) {
+            return false;
+        }
+
+        TodoTask otherTask = (TodoTask) other;
+        return otherTask.getName().equals(this.getName());
+    }
 }
