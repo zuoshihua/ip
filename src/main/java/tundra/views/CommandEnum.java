@@ -13,7 +13,8 @@ public enum CommandEnum {
     TODO(new TodoCommand()),
     DEADLINE(new DeadlineCommand()),
     EVENT(new EventCommand()),
-    BYE(new ByeCommand());
+    BYE(new ByeCommand()),
+    FORCE(new ForceCommand());
 
     final Command command;
 
