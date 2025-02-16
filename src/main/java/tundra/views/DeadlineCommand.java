@@ -43,6 +43,10 @@ public class DeadlineCommand extends Command {
         try {
             LocalDateTime due = LocalDateTime.parse(arguments[1], Parser.INPUT_FORMAT);
             Task task = new DeadlineTask(arguments[0], due);
+            if (!isForced() && taskList.contains(task)) {
+                throw new TundraException("Task already exists. " +
+                        "Use force command to add it to the list regardless.");
+            }
             taskList.add(task);
             ui.printMessage(
                     "Got it. I've added this task:\n",
