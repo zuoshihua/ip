@@ -24,7 +24,7 @@ public class Ui {
     }
 
     /**
-     * Convenience method to print the formatted speech bubble.
+     * Prints the formatted speech bubble to standard output.
      * @param strings Variadic argument representing strings to format.
      * @see #formatMessage(String...)
      */
