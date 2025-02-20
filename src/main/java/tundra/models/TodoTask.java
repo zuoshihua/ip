@@ -40,7 +40,7 @@ public class TodoTask extends Task {
     public boolean equals(Object other) {
         if (!super.equals(other)) {
             return false;
-        };
+        }
 
         if (!(other instanceof TodoTask)) {
             return false;

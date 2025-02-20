@@ -77,7 +77,7 @@ public class EventTask extends Task {
 
     @Override
     public boolean equals(Object other) {
-        if(!super.equals(other)) {
+        if (!super.equals(other)) {
             return false;
         }
 
@@ -88,5 +88,5 @@ public class EventTask extends Task {
         EventTask otherTask = (EventTask) other;
         return from.equals(otherTask.from)
                 && to.equals(otherTask.to);
-}
+    }
 }

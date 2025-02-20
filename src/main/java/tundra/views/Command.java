@@ -5,7 +5,8 @@ import tundra.utils.TaskList;
 
 /**
  * Represents a command entered by the user.
- * A command consists of an array of arguments.
+ * A command consists of an array of arguments and a flag
+ * indicating whether it is forced.
  */
 public abstract class Command {
 

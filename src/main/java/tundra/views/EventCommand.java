@@ -47,8 +47,8 @@ public class EventCommand extends Command {
             LocalDateTime to = LocalDateTime.parse(arguments[2], Parser.INPUT_FORMAT);
             Task task = new EventTask(arguments[0], from, to);
             if (!isForced() && taskList.contains(task)) {
-                throw new TundraException("Task already exists. " +
-                        "Use force command to add it to the list regardless.");
+                throw new TundraException("Task already exists. "
+                        + "Use force command to add it to the list regardless.");
             }
             taskList.add(task);
             ui.printMessage(
