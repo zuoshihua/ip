@@ -28,6 +28,7 @@ public class App extends Application {
             primaryStage.setScene(scene);
             primaryStage.setMinHeight(220);
             primaryStage.setMinWidth(417);
+            primaryStage.setTitle("Tundra");
             fxmlLoader.<ChatComponent>getController().setTundra(tundra);
             primaryStage.show();
         } catch (IOException e) {
