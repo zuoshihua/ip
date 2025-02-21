@@ -39,7 +39,7 @@ public class UnmarkCommand extends Command {
                     "\t" + task + "\n"
             );
         } catch (ArrayIndexOutOfBoundsException | NumberFormatException e) {
-            throw new TundraException("Incorrect syntax. Usage: mark [number]");
+            throw new TundraException("Incorrect syntax. Usage: unmark [number]");
         } catch (IndexOutOfBoundsException e) {
             throw new TundraException("No such task. Enter 'list' to see all tasks");
         }
